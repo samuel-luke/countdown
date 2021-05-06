@@ -62,6 +62,7 @@ def main():
     # array = ['a', 'o', 'g', 'l', 'r', 'f', 'i', 'p', 'e']    
     # array = ['n', 'i', 'c', 'e', 's', 'h', 'i', 't', 's']  
     
+    # Command Line Input
     array = getUserInput()  
     
     if len(array) < 9:

@@ -1,5 +1,4 @@
 import time
-import re
 
 def calculate(target, array):
     global traceback
@@ -77,10 +76,8 @@ def countdown(given, target):
             traceback = []
             
     output = sorted(output,key=len,reverse=True)
-    for line in output:
-        print(line)
+    return output
             
-    # print("Total Solutions:",len(output))
 
 
 def main():
@@ -113,12 +110,29 @@ def main():
     print("Enter the goal")
     goal = int(input(": "))
 
-    startTime = int(round(time.time() * 1000))
-    countdown(array, goal)
-    endTime = int(round(time.time() * 1000))
-
+    # Timing
+    # startTime = int(round(time.time() * 1000))
+    # output = countdown(array, goal)
+    # endTime = int(round(time.time() * 1000))
     # print("Time:", endTime-startTime, "ms")
     
+    # Evaluates values close to goal until solution is found
+    index = 2
+    output = []
+    while not output:
+        output = countdown(array, goal)
+        if not output:
+            print("Unable to find solution for", goal, " Trying next value...")
+            if index % 2 == 0:
+                goal = goal-index//2
+            else:
+                goal = goal+index//2
+            index += 1
+            
+    for line in output:
+        print(line)
+    print("Total Solutions:", len(output))
+            
     
 if __name__ == "__main__":
     main()
